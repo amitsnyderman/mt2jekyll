@@ -87,7 +87,15 @@ posts.each do |p|
 		f.puts "title: \"#{p[:title]}\""
 		f.puts "date: #{date.to_s}"
 		f.puts "categories:"
-		f.puts "tags: [school, itp]"
+		p[:categories].each do |c|
+			f.puts "- #{c}"
+		end
+		f.puts "tags:"
+		p[:tags].each do |trow|
+			trow.split(/[^\w\d]/).each do |t|
+				f.puts "- #{t}"
+			end
+		end
 		f.puts "---"
 		f.puts p[:body]
 	end
